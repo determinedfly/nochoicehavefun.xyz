@@ -43,41 +43,61 @@
 
  <section class="shop-section">
   <h2>/modules interface</h2>
-  <div class="filters">
-    <span>filter >></span>
-    <div class="filter-tags">
-      [00zines] [posters] [prints] [digital prints] [transfers]
-      [stickers] [patches] [badges] [totebags]
-      [lighter cases] [keychains] [fonts]
-      [music] [fragments] [bundles]
+    <div class="filters">
+      <span class="filter-label">filter >></span>
+      <div class="filter-tags">
+        <button data-cat="00zines">00zines</button>
+        <button data-cat="posters">posters</button>
+        <button data-cat="prints">prints</button>
+        <button data-cat="digital prints">digital prints</button>
+        <button data-cat="transfers">transfers</button>
+        <button data-cat="stickers">stickers</button>
+        <button data-cat="patches">patches</button>
+        <button data-cat="badges">badges</button>
+        <button data-cat="totebags">totebags</button>
+        <button data-cat="lighter cases">lighter cases</button>
+        <button data-cat="keychains">keychains</button>
+        <button data-cat="fonts">fonts</button>
+        <button data-cat="music">music</button>
+        <button data-cat="fragments">fragments</button>
+        <button data-cat="bundles">bundles</button>
+      </div>
     </div>
-  </div>
 
   <div class="product-grid">
-    <div class="product">
+    <button class="product" data-cat="00zines" data-desc="from nothing" data-price="15.99€">
       <img src="..." alt="">
       <p>00zine – from nothing <span>15.99€</span></p>
-    </div>
-    <div class="product">
+    </button>
+    <button class="product" data-cat="posters" data-desc="hfhf" data-price="15.99€">
       <img src="..." alt="">
       <p>poster – hfhf <span>15.99€</span></p>
-    </div>
-    <div class="product">
+    </button>
+    <button class="product" data-cat="keychains" data-desc="kiky keychain" data-price="15.99€">
       <img src="..." alt="">
       <p>kiky keychain <span>15.99€</span></p>
-    </div>
-    <div class="product">
+    </button>
+    <button class="product" data-cat="lighter cases" data-desc="muhas zippo case" data-price="15.99€">
       <img src="..." alt="">
       <p>muhas zippo case <span>15.99€</span></p>
-    </div>
+    </button>
   </div>
 
   <div class="shop-nav">
     <input type="text" placeholder="search">
     <div class="nav-controls">
       <span>view all >></span>
-      <span>&lt;&lt; 4 prev</span>
+      <span>&lt;&lt; 4 txen</span>
       <span>view next 4 >></span>
+    </div>
+  </div>
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close">×</button>
+      <img src="" alt="" class="modal-image">
+      <p class="modal-description"></p>
+      <p class="modal-price"></p>
+      <button class="buy-btn">buy</button>
     </div>
   </div>
 </section>
@@ -108,28 +128,34 @@
 
   <section class="contact" id="contacts">
     <h2>connect us</h2>
-    <div class="contact-info">
-      <p><strong>e-mail:</strong> nochoicehavefun@gmail.com</p>
-      <p><strong>instagram:</strong> @flyin0.0<br>@blackskich</p>
-      <p><strong>telegram:</strong> @nochoicehavefun</p>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <p><strong>e-mail:</strong> nochoicehavefun@gmail.com</p>
+        <p><strong>instagram:</strong> @flyin0.0<br>@blackskich</p>
+        <p><strong>telegram:</strong> @nochoicehavefun</p>
+      </div>
+      <form class="contact-form">
+        <input type="email" placeholder="your e-mail here" />
+        <textarea placeholder="your message"></textarea>
+        <p>consultations free of charge</p>
+        <button type="submit">send a message</button>
+      </form>
     </div>
-    <form class="contact-form">
-      <input type="email" placeholder="your e-mail here" />
-      <textarea placeholder="your message"></textarea>
-      <p>consultations free of charge</p>
-      <button type="submit">send a message</button>
-    </form>
   </section>
 
   <footer>
-    <div class="legal-links">
-      <a href="#">privacy policy</a>
-      <a href="#">accessibility statement</a>
-      <a href="#">terms & conditions</a>
-      <a href="#">refund policy</a>
-      <a href="#">shipping policy</a>
+    <div class="footer-grid">
+      <div class="footer-brand">no choice, have fun</div>
+      <div class="footer-links">
+        <a href="#">privacy policy</a>
+        <a href="#">accessibility statement</a>
+        <a href="#">terms & conditions</a>
+        <a href="#">refund policy</a>
+        <a href="#">shipping policy</a>
+        <p class="copyright">© 2033 by nochoicehavefun</p>
+      </div>
     </div>
-    <p class="copyright">© 2033 by nochoicehavefun</p>
-    <h1>no choice, have fun</h1>
   </footer>
+  <script src="script.js"></script>
+ </body>
 </html>
