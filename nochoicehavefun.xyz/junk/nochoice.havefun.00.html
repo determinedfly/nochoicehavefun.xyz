@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>muha: archive (wireframe)</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+  margin: 0;
+  padding: 2rem;
+  font-family: monospace;
+  background: #000;
+  color: #fff;
+}
+
+nav a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid #444;
+}
+
+.product .image-placeholder {
+  width: 220px;
+  height: 220px;
+  background: #000;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+form input, form button {
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-family: monospace;
+  background: #111;
+  color: #fff;
+  border: 1px solid #fff;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>nochoicehavefun [00]</h1>
+    <nav>
+      <a href="#archive">archive</a>
+      <a href="#about">about</a>
+      <a href="mailto:contact@muha.site">contact</a>
+    </nav>
+  </header>
+
+  <main id="archive">
+    <!-- Example wireframe item -->
+    <section class="product">
+      <div class="image-placeholder">image placeholder</div>
+      <div class="textblock">
+        <h2>n00 #001</h2>
+        <p class="desc">casted in ground and printed in dreams. </p> 
+        <p>limited edition.</p>
+        <p class="price">€42</p>
+        <form action="#" method="POST">
+          <input type="hidden" name="product" value="n00 #001">
+          <input type="email" name="email" placeholder="your email" required>
+          <button type="submit">buy</button>
+        </form>
+      </div>
+    </section>
+    <!-- Duplicate this block for each product -->
+  </main>
+
+  <footer id="about">
+    <p>muha aka flyin0.0 — mixed creator. everything is fun.</p>
+    <p>kiky aka blackskich — cloudy visual artist</p>
+    <p>site built manually, updated with hands. no CMS, no templates, only will.</p>
+  </footer>
+</body>
+</html>
