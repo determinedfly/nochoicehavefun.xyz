@@ -97,21 +97,47 @@ listModal?.addEventListener('click', e => {
 const navNext = document.getElementById('next');
 const navPrev = document.getElementById('prev');
 let page = 0;
+let itemsPerPage = getItems();
+
+function getItems() {
+  if (window.innerWidth <= 500) return 1;
+  if (window.innerWidth <= 800) return 2;
+  return 4;
+}
+
+function updateNavText() {
+  if (navNext) navNext.textContent = `view next ${itemsPerPage} >>`;
+  if (navPrev) navPrev.textContent = `<< ${itemsPerPage} txen`;
+}
+
 function showPage(idx) {
-  const start = idx * 4;
+  const start = idx * itemsPerPage;
   products.forEach((p, i) => {
-    p.style.display = i >= start && i < start + 4 ? '' : 'none';
+    p.style.display = i >= start && i < start + itemsPerPage ? '' : 'none';
   });
 }
+
+function refresh() {
+  const newCount = getItems();
+  if (newCount !== itemsPerPage) {
+    itemsPerPage = newCount;
+    page = 0;
+  }
+  updateNavText();
+  showPage(page);
+}
+
+window.addEventListener('resize', refresh);
 navNext?.addEventListener('click', () => {
-  page = (page + 1) % Math.ceil(products.length / 4);
+  page = (page + 1) % Math.ceil(products.length / itemsPerPage);
   showPage(page);
 });
 navPrev?.addEventListener('click', () => {
-  page = (page - 1 + Math.ceil(products.length / 4)) % Math.ceil(products.length / 4);
+  page = (page - 1 + Math.ceil(products.length / itemsPerPage)) % Math.ceil(products.length / itemsPerPage);
   showPage(page);
 });
-showPage(0);
+
+refresh();
 
 // service section expansion
 const serviceButtons = document.querySelectorAll('.service');
@@ -124,6 +150,19 @@ serviceButtons.forEach(btn => {
     const text = btn.dataset.desc;
     const container = btn.querySelector('.service-text');
     if (container) container.textContent = text || '';
+  });
+});
+
+// stack buttons inside services
+const stackButtons = document.querySelectorAll('.stack-btn');
+stackButtons.forEach(sb => {
+  sb.addEventListener('click', e => {
+    e.stopPropagation();
+    cartCount++;
+    if (cartCountSpan) cartCountSpan.textContent = cartCount;
+    stackButtons.forEach(b => {
+      b.innerHTML = `stack&gt; <span class="cart-count">${cartCount}</span> items in memory`;
+    });
   });
 });
 

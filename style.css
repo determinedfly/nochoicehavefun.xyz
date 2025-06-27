@@ -13,10 +13,16 @@ body {
   line-height: 1.4;
 }
 
-.max-container {
+.layout-container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 160px;
+}
+
+@media (max-width: 800px) {
+  .layout-container {
+    padding: 0 20px;
+  }
 }
 
 /* HEADER */
@@ -31,7 +37,6 @@ header {
 
 .nav-bar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   font-size: 12px;
 }
@@ -41,9 +46,17 @@ header {
   text-decoration: none;
 }
 
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .lang-container {
   position: relative;
-  margin-left: 2rem;
+  margin-left: 1rem;
+  flex-shrink: 0;
 }
 
 .lang-switch {
@@ -75,7 +88,7 @@ header {
 }
 
 .connect-anchor {
-  margin-right: 500px;
+  white-space: nowrap;
 }
 
 /* HERO SECTION */
@@ -126,7 +139,7 @@ header {
   color: #ccc;
   line-height: 1.6;
   max-width: 400px;
-  margin-right: 500px;
+  margin-left: auto;
 }
 
 @media (max-width: 800px) {
@@ -135,7 +148,7 @@ header {
     align-items: flex-start;
   }
   .studio-info {
-    margin-right: 0;
+    margin-left: 0;
     font-size: clamp(12px, 3vw, 14px);
     order: 2;
     align-self: flex-start;
@@ -266,19 +279,19 @@ header {
 
 .search-wrapper {
   position: relative;
-  width: 30%;
-  max-width: 340px;
+  width: 35%;
+  max-width: 380px;
 }
 .search-wrapper input {
   width: 100%;
   background-color: transparent;
-  border: 1px solid #555;
+  border: 1px solid #fff;
   color: #fff;
   padding: 8px 24px 8px 12px;
   font-family: 'Red Hat Mono', monospace;
   font-size: 12px;
 }
-.search-arrow {
+.search-icon {
   position: absolute;
   right: 8px;
   top: 50%;
@@ -287,7 +300,7 @@ header {
   pointer-events: none;
   transition: color 0.3s;
 }
-.search-wrapper:hover .search-arrow {
+.search-wrapper:hover .search-icon {
   color: #fff;
 }
 
@@ -298,13 +311,20 @@ header {
 }
 
 .nav-controls {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   font-size: 12px;
   color: #aaa;
+  width: 100%;
+}
+.nav-controls span {
+  text-align: right;
 }
 .nav-controls span:hover {
   color: #fff;
+}
+.nav-controls .filler {
+  visibility: hidden;
 }
 
 /* MODAL */
@@ -434,7 +454,7 @@ header {
   flex: 1;
   color: #ccc;
 }
-.book-btn {
+.stack-btn {
   margin-top: 1rem;
   background: none;
   border: 1px solid #888;
