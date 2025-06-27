@@ -441,6 +441,7 @@ header {
 }
 
 .service {
+  position: relative;
   padding: 1rem;
   border: none;
   background-color: #111;
@@ -457,20 +458,26 @@ header {
   margin-top: 1rem;
   gap: 20px;
   align-items: flex-start;
+  position: relative;
+  padding-bottom: 40px;
 }
 .service.open .service-details {
   display: flex;
+  flex-direction: row-reverse;
 }
 .service-details img {
-  width: 40%;
+  width: 50%;
   height: auto;
 }
 .service-text {
-  flex: 1;
+  width: 50%;
   color: #ccc;
 }
 .stack-btn {
-  margin-top: 1rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-top: 0;
   background: none;
   border: 1px solid #888;
   color: #fff;
