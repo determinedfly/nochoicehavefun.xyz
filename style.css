@@ -104,7 +104,7 @@ header {
   grid-template-columns: 1fr 400px;
   grid-template-rows: auto auto;
   column-gap: 40px;
-  align-items: start;
+  align-items: end;
 }
 
 .noise-img {
@@ -124,7 +124,7 @@ header {
   margin-top: 20px;
   font-size: 24px;
   color: #fff;
-  text-align: center;
+  text-align: left;
 }
 
 .studio-info p {
@@ -133,7 +133,8 @@ header {
 
 .studio-info {
   grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  grid-row: 1 / 2;
+  align-self: end;
   font-family: 'Red Hat Mono', monospace;
   font-size: 14px;
   color: #ccc;
@@ -312,6 +313,10 @@ header {
 }
 .search-wrapper:hover .search-icon {
   color: #fff;
+}
+.search-wrapper:hover input {
+  border-color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 800px) {
