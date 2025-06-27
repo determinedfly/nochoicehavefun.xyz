@@ -150,6 +150,11 @@ serviceButtons.forEach(btn => {
     const text = btn.dataset.desc;
     const container = btn.querySelector('.service-text');
     if (container) container.textContent = text || '';
+    const imgEl = btn.querySelector('img');
+    if (imgEl && btn.dataset.img) {
+      imgEl.src = btn.dataset.img;
+      imgEl.alt = btn.dataset.title || '';
+    }
   });
 });
 
