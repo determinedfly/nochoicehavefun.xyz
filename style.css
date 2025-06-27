@@ -443,7 +443,7 @@ header {
 .service {
   position: relative;
   padding: 1rem;
-  border: none;
+  border: 1px solid #333;
   background-color: #111;
   cursor: pointer;
   text-align: left;
@@ -475,8 +475,8 @@ header {
 }
 .stack-btn {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 10px;
+  right: 10px;
   margin-top: 0;
   background: none;
   border: 1px solid #888;
