@@ -117,6 +117,9 @@ showPage(0);
 const serviceButtons = document.querySelectorAll('.service');
 serviceButtons.forEach(btn => {
   btn.addEventListener('click', () => {
+    serviceButtons.forEach(b => {
+      if (b !== btn) b.classList.remove('open');
+    });
     btn.classList.toggle('open');
     const text = btn.dataset.desc;
     const container = btn.querySelector('.service-text');

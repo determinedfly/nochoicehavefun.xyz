@@ -7,26 +7,29 @@
 
 body {
   font-family: 'Red Hat Mono', monospace;
-  background-color: #0a0a0a;
+  background-color: #000;
   color: #f0f0f0;
   font-size: 14px;
   line-height: 1.4;
+}
+
+.max-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 160px;
 }
 
 /* HEADER */
 header {
   position: sticky;
   top: 0;
-  background: #0a0a0a;
+  background: #000;
   z-index: 100;
   padding: 1rem 0;
   border-bottom: 1px solid #333;
 }
 
 .nav-bar {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -86,10 +89,7 @@ header {
 
 .hero-inner {
   display: flex;
-  gap: 64px;
-  max-width: 1200px;
-  width: 100%;
-  padding: 0 40px;
+  gap: 40px;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -97,7 +97,7 @@ header {
 .left-block {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   flex-shrink: 0;
 }
 
@@ -114,7 +114,7 @@ header {
   margin-top: 20px;
   font-size: 24px;
   color: #fff;
-  text-align: left;
+  text-align: center;
 }
 
 .studio-info {
@@ -136,6 +136,7 @@ header {
     font-size: clamp(12px, 3vw, 14px);
     align-self: flex-end;
     transform-origin: top right;
+    transform: scale(0.9);
   }
 }
 
@@ -156,10 +157,8 @@ header {
 
 /* SHOP SECTION */
 .shop-section {
-  max-width: 1200px;
   margin: 60px auto;
-  padding: 60px 40px;
-  box-sizing: border-box;
+  padding: 60px 0;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
 }
@@ -176,17 +175,17 @@ header {
   font-size: 13px;
   color: #aaa;
   margin-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  row-gap: 12px;
   align-items: center;
-  gap: 8px;
 }
 
 .filter-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-left: 8px;
+  gap: 12px;
 }
 
 .filter-tags button {
@@ -199,17 +198,17 @@ header {
   cursor: pointer;
 }
 .filter-tags button:hover {
-  color: #777;
+  color: rgba(255, 255, 255, 0.5);
 }
 .filter-tags button.active {
   color: #BA5842;
+  border-color: #BA5842;
 }
 
 .product-grid {
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  gap: 0;
+  flex-wrap: wrap;
+  gap: 2%;
   margin-top: 2rem;
 }
 
@@ -223,12 +222,18 @@ header {
   color: #fff;
   font-family: 'Red Hat Mono', monospace;
   font-size: 13px;
-  width: 260px;
-  height: 340px;
+  width: 23%;
+  height: 300px;
   border: none;
 }
 .product:hover {
   border: 1px solid #fff;
+}
+
+@media (max-width: 800px) {
+  .product {
+    width: 48%;
+  }
 }
 
 .product img {
@@ -253,30 +258,36 @@ header {
   gap: 20px;
 }
 
-.shop-nav input[type="text"] {
+.search-wrapper {
   position: relative;
+  width: 30%;
+  max-width: 340px;
+}
+.search-wrapper input {
+  width: 100%;
   background-color: transparent;
   border: 1px solid #555;
   color: #fff;
   padding: 8px 24px 8px 12px;
   font-family: 'Red Hat Mono', monospace;
   font-size: 12px;
-  width: 300px;
 }
-.shop-nav input[type="text"]::after {
-  content: '↘';
+.search-arrow {
   position: absolute;
   right: 8px;
-  top: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #777;
+  pointer-events: none;
+  transition: color 0.3s;
 }
-.shop-nav input[type="text"]:hover::after {
+.search-wrapper:hover .search-arrow {
   color: #fff;
 }
 
 @media (max-width: 800px) {
-  .shop-nav input[type="text"] {
-    width: 160px;
+  .search-wrapper {
+    width: 100%;
   }
 }
 
@@ -370,9 +381,7 @@ header {
 
 /* SERVICES SECTION */
 .services {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
 .services h2 {
@@ -443,9 +452,7 @@ header {
 
 /* CONTACT SECTION */
 .contact {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
 .contact h2 {
@@ -507,11 +514,9 @@ header {
 
 /* FOOTER */
 footer {
-  padding: 3rem 2rem 5rem;
+  padding: 3rem 0 5rem;
   font-size: 13px;
   color: #666;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .footer-grid {
