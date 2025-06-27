@@ -39,9 +39,41 @@ header {
   text-decoration: none;
 }
 
-.lang-switch {
+.lang-container {
+  position: relative;
   margin-left: 2rem;
+}
+
+.lang-switch {
   opacity: 0.6;
+  cursor: pointer;
+}
+
+.lang-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #111;
+  border: 1px solid #444;
+  display: none;
+  flex-direction: column;
+  min-width: 60px;
+  z-index: 10;
+}
+
+.lang-container.open .lang-dropdown {
+  display: flex;
+}
+
+.lang-dropdown a {
+  color: #fff;
+  padding: 4px 8px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.connect-anchor {
+  margin-right: 500px;
 }
 
 /* HERO SECTION */
@@ -71,8 +103,9 @@ header {
 
 .left-block .noise-img {
   width: 100%;
-  max-width: 1100px;
+  max-width: min(1100px, 50vw);
   height: auto;
+  aspect-ratio: 1100 / 666;
   object-fit: cover;
   display: block;
 }
@@ -90,6 +123,20 @@ header {
   color: #ccc;
   line-height: 1.6;
   max-width: 400px;
+  margin-right: 500px;
+}
+
+@media (max-width: 800px) {
+  .hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .studio-info {
+    margin-right: 0;
+    font-size: clamp(12px, 3vw, 14px);
+    align-self: flex-end;
+    transform-origin: top right;
+  }
 }
 
 .logo-fixed {
@@ -110,9 +157,11 @@ header {
 /* SHOP SECTION */
 .shop-section {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 60px auto;
   padding: 60px 40px;
   box-sizing: border-box;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 
 .shop-section h2 {
@@ -127,13 +176,17 @@ header {
   font-size: 13px;
   color: #aaa;
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
 
 .filter-tags {
-  margin-top: 5px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-left: 8px;
 }
 
 .filter-tags button {
@@ -145,10 +198,17 @@ header {
   font-size: 12px;
   cursor: pointer;
 }
+.filter-tags button:hover {
+  color: #777;
+}
+.filter-tags button.active {
+  color: #BA5842;
+}
 
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 0;
   margin-top: 2rem;
 }
@@ -156,7 +216,6 @@ header {
 .product {
   background-color: #1a1a1a;
   padding: 12px;
-  border: 1px solid #fff;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -164,6 +223,12 @@ header {
   color: #fff;
   font-family: 'Red Hat Mono', monospace;
   font-size: 13px;
+  width: 260px;
+  height: 340px;
+  border: none;
+}
+.product:hover {
+  border: 1px solid #fff;
 }
 
 .product img {
@@ -189,13 +254,30 @@ header {
 }
 
 .shop-nav input[type="text"] {
+  position: relative;
   background-color: transparent;
   border: 1px solid #555;
   color: #fff;
-  padding: 8px 12px;
+  padding: 8px 24px 8px 12px;
   font-family: 'Red Hat Mono', monospace;
   font-size: 12px;
-  width: 160px;
+  width: 300px;
+}
+.shop-nav input[type="text"]::after {
+  content: '↘';
+  position: absolute;
+  right: 8px;
+  top: 4px;
+  color: #777;
+}
+.shop-nav input[type="text"]:hover::after {
+  color: #fff;
+}
+
+@media (max-width: 800px) {
+  .shop-nav input[type="text"] {
+    width: 160px;
+  }
 }
 
 .nav-controls {
@@ -227,15 +309,52 @@ header {
   background: #111;
   padding: 20px;
   border: 1px solid #fff;
-  max-width: 500px;
+  max-width: 800px;
   width: 90%;
-  text-align: center;
+  position: relative;
 }
 
+.modal-body {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
 .modal-content img {
-  width: 100%;
+  width: 60%;
   height: auto;
-  margin-bottom: 1rem;
+}
+.modal-details {
+  flex: 1;
+  text-align: left;
+}
+.modal-title {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+}
+.buy-btn {
+  margin-top: 1rem;
+  background: none;
+  border: 1px solid #888;
+  color: #fff;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.list-content {
+  max-width: 600px;
+  text-align: left;
+}
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.product-list li {
+  padding: 4px 0;
+  cursor: pointer;
+}
+.product-list li:hover {
+  color: #BA5842;
 }
 
 .modal-close {
@@ -270,8 +389,38 @@ header {
 
 .service {
   padding: 1rem;
-  border: 1px solid #222;
+  border: none;
   background-color: #111;
+  cursor: pointer;
+  text-align: left;
+}
+.service:hover {
+  border: 1px solid #fff;
+}
+.service-details {
+  display: none;
+  margin-top: 1rem;
+  gap: 20px;
+  align-items: flex-start;
+}
+.service.open .service-details {
+  display: flex;
+}
+.service-details img {
+  width: 40%;
+  height: auto;
+}
+.service-text {
+  flex: 1;
+  color: #ccc;
+}
+.book-btn {
+  margin-top: 1rem;
+  background: none;
+  border: 1px solid #888;
+  color: #fff;
+  padding: 4px 10px;
+  cursor: pointer;
 }
 
 .service h3 {
@@ -347,6 +496,9 @@ header {
   align-self: flex-start;
   font-size: 13px;
 }
+.send-btn {
+  align-self: flex-end;
+}
 
 .contact-form p {
   font-size: 11px;
@@ -380,4 +532,6 @@ footer {
 .footer-brand {
   font-size: 16px;
   color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
 }
