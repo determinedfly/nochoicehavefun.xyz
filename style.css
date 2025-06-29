@@ -111,7 +111,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0 5vw;
 }
 
 
@@ -132,6 +131,10 @@ header {
   border: 1px solid white;
   padding: 1rem;
   white-space: pre-line;
+}
+.terminal-box p {
+  line-height: 1.42;
+  letter-spacing: 0;
 }
 
 .tagline {
@@ -534,6 +537,8 @@ header {
 .contact-info p {
   font-size: 13px;
   margin-bottom: 0.5rem;
+  line-height: 1.42;
+  letter-spacing: 0;
 }
 
 .contact-form {
@@ -551,6 +556,7 @@ header {
   color: #fff;
   font-family: inherit;
   font-size: 13px;
+  letter-spacing: 0;
 }
 
 .contact-form button {
@@ -576,6 +582,8 @@ footer {
   padding: 3rem 5vw 5rem;
   font-size: 13px;
   color: #666;
+  line-height: 1.42;
+  letter-spacing: 0;
 }
 
 .footer-grid {
