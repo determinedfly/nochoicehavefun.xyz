@@ -171,3 +171,94 @@ stackButtons.forEach(sb => {
   });
 });
 
+// HERO WEBGL SHADER
+const heroCanvas = document.getElementById('hero-canvas');
+if (heroCanvas) {
+  const gl = heroCanvas.getContext('webgl2');
+  if (gl) {
+    const vertexSrc = `#version 300 es
+    in vec2 position;
+    void main() {
+      gl_Position = vec4(position, 0.0, 1.0);
+    }`;
+
+    const fragmentSrc = `#version 300 es
+    precision highp float;
+    uniform float time;
+    uniform vec2 resolution;
+    uniform vec2 move;
+    out vec4 O;
+
+    vec3 pal(float t) {
+      return 0.5 + 0.5*cos(6.2831*(vec3(0.0,0.33,0.67)+t));
+    }
+
+    void main(){
+      vec2 uv = (gl_FragCoord.xy - 0.5*resolution) / resolution.y;
+      vec2 m = (move / resolution - 0.5) * 2.0;
+      float d = length(uv - m);
+      float a = atan(uv.y - m.y, uv.x - m.x);
+      float w = sin(8.0*a + time);
+      vec3 col = pal(d + w + time*0.1);
+      O = vec4(col, 1.0);
+    }`;
+
+    function compile(type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      return shader;
+    }
+
+    const vs = compile(gl.VERTEX_SHADER, vertexSrc);
+    const fs = compile(gl.FRAGMENT_SHADER, fragmentSrc);
+    const program = gl.createProgram();
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    const position = gl.getAttribLocation(program, 'position');
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      -1, -1,
+       1, -1,
+      -1,  1,
+      -1,  1,
+       1, -1,
+       1,  1,
+    ]), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+
+    const timeLoc = gl.getUniformLocation(program, 'time');
+    const resLoc = gl.getUniformLocation(program, 'resolution');
+    const moveLoc = gl.getUniformLocation(program, 'move');
+
+    function resize() {
+      heroCanvas.width = heroCanvas.clientWidth;
+      heroCanvas.height = heroCanvas.clientHeight;
+      gl.viewport(0, 0, heroCanvas.width, heroCanvas.height);
+      gl.uniform2f(resLoc, heroCanvas.width, heroCanvas.height);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let mouse = [0, 0];
+    heroCanvas.addEventListener('mousemove', e => {
+      const rect = heroCanvas.getBoundingClientRect();
+      mouse[0] = e.clientX - rect.left;
+      mouse[1] = heroCanvas.height - (e.clientY - rect.top);
+      gl.uniform2f(moveLoc, mouse[0], mouse[1]);
+    });
+
+    function render(t) {
+      gl.uniform1f(timeLoc, t * 0.001);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+  }
+}
+
