@@ -41,6 +41,7 @@ header {
   align-items: center;
   font-size: 12px;
   padding: 0.5rem 0;
+  width: 100%;
 }
 
 .nav-bar a {
@@ -111,6 +112,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  width: 100%;
+}
+.left-block,
+.right-block {
+  flex: 1;
 }
 
 
@@ -527,6 +533,7 @@ header {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .contact-info,
