@@ -108,8 +108,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-top: 80px;
-  padding-bottom: 60px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 160px 60px;
 }
 
 
@@ -153,7 +154,7 @@ header {
 @media (max-width: 800px) {
   .hero-inner {
     flex-direction: column;
-    padding: 60px 0;
+    padding: 60px 20px;
   }
   .studio-info {
     font-size: clamp(12px, 3vw, 14px);
@@ -162,6 +163,10 @@ header {
   }
   .participate-note {
     align-self: flex-end;
+  }
+  .shop-section {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -183,7 +188,7 @@ header {
 /* SHOP SECTION */
 .shop-section {
   position: relative;
-  padding: 60px 0;
+  padding: 60px 160px;
 }
 
 .shop-section::before,
@@ -602,6 +607,9 @@ footer {
   flex-wrap: wrap;
   gap: 2rem;
   align-items: flex-end;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 160px;
 }
 
 .footer-links a {
@@ -617,6 +625,12 @@ footer {
   color: #f0f0f0;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 800px) {
+  .footer-grid {
+    padding: 0 20px;
+  }
 }
 .copyright {
   font-size: 12px;
