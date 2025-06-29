@@ -10,30 +10,38 @@
 
 <body>
   <header class="sticky-header">
+  <div class="layout-container">
     <div class="nav-bar">
-      <span class="path">00/path/nochoicehavefun</span>
-      <nav>
-        <a href="#services">services</a>
-        <a href="#contacts">contacts</a>
+  <span class="path">&gt;&gt; ./nochoicehavefun</span>
+  <div class="nav-right">
+    <a href="#services-terminal" class="connect-anchor">connect us</a>
+    <div class="lang-container">
         <span class="lang-switch">&lt; EN &gt;</span>
-      </nav>
+        <div class="lang-dropdown">
+          <a href="#" data-lang="EN">EN</a>
+          <a href="#" data-lang="RU">RU</a>
+          <a href="#" data-lang="LV">LV</a>
+        </div>
+      </div>
     </div>
   </header>
 
 <section class="hero">
-  <div class="hero-inner">
+  <canvas id="hero-canvas"></canvas>
+  <div class="layout-container hero-layout">
     <div class="left-block">
-      <img src="./assets/images/noise.gif" alt="noise" class="noise-img">
-      <p class="participate-note">^you are already participating</p>
+      <div class="terminal-box">
+        <p>> self-replication detected</p>
+        <p>> nochoicehavefun initialized</p>
+        <p>> type: hybrid studio<br>&nbsp;&nbsp;\ philosophical system</p>
+        <p>> core modules: visual forms<br>&nbsp;&nbsp;\ sonic rhythms \ semiotic design</p>
+        <p>> operating logic:<br>&nbsp;&nbsp;\ cause-driven composition</p>
+        <p>> input: external stimuli</p>
+        <p>> output: structured hallucination</p>
+      </div>
     </div>
-    <div class="studio-info">
-      <p>> self-replication detected</p>
-      <p>> nochoicehavefun initialized</p>
-      <p>> type: hybrid studio<br>&nbsp;&nbsp;\ philosophical system</p>
-      <p>> core modules: visual forms<br>&nbsp;&nbsp;\ sonic rhythms \ semiotic design</p>
-      <p>> operating logic:<br>&nbsp;&nbsp;\ cause-driven composition</p>
-      <p>> input: external stimuli</p>
-      <p>> output: structured hallucination</p>
+    <div class="right-block">
+      <p class="participate-note">^you are already participating</p>
     </div>
   </div>
   <div class="logo-fixed">
@@ -41,8 +49,9 @@
   </div>
 </section>
 
- <section class="shop-section">
-  <h2>/modules interface</h2>
+ <section class="shop-section" id="modules">
+  <div class="layout-container">
+  <h2>&gt;&gt; run /modules</h2>
     <div class="filters">
       <span class="filter-label">filter >></span>
       <div class="filter-tags">
@@ -65,68 +74,104 @@
     </div>
 
   <div class="product-grid">
-    <button class="product" data-cat="00zines" data-desc="from nothing" data-price="15.99€">
+    <button class="product" data-cat="00zines" data-title="00zine – from nothing" data-desc="from nothing" data-price="15.99€">
       <img src="..." alt="">
       <p>00zine – from nothing <span>15.99€</span></p>
     </button>
-    <button class="product" data-cat="posters" data-desc="hfhf" data-price="15.99€">
+    <button class="product" data-cat="posters" data-title="poster – hfhf" data-desc="hfhf" data-price="15.99€">
       <img src="..." alt="">
       <p>poster – hfhf <span>15.99€</span></p>
     </button>
-    <button class="product" data-cat="keychains" data-desc="kiky keychain" data-price="15.99€">
+    <button class="product" data-cat="keychains" data-title="kiky keychain" data-desc="kiky keychain" data-price="15.99€">
       <img src="..." alt="">
       <p>kiky keychain <span>15.99€</span></p>
     </button>
-    <button class="product" data-cat="lighter cases" data-desc="muhas zippo case" data-price="15.99€">
+    <button class="product" data-cat="lighter cases" data-title="muhas zippo case" data-desc="muhas zippo case" data-price="15.99€">
       <img src="..." alt="">
       <p>muhas zippo case <span>15.99€</span></p>
     </button>
   </div>
 
   <div class="shop-nav">
-    <input type="text" placeholder="search">
+    <div class="search-wrapper">
+      <input type="text" placeholder="search">
+      <span class="search-icon">↗</span>
+    </div>
     <div class="nav-controls">
-      <span>view all >></span>
-      <span>&lt;&lt; 4 txen</span>
-      <span>view next 4 >></span>
+      <span class="filler"></span>
+      <span id="view-all">view all >></span>
+      <span id="prev">&lt;&lt; 4 txen</span>
+      <span id="next">view next 4 >></span>
     </div>
   </div>
   <div id="product-modal" class="modal">
     <div class="modal-content">
       <button class="modal-close">×</button>
-      <img src="" alt="" class="modal-image">
-      <p class="modal-description"></p>
-      <p class="modal-price"></p>
-      <button class="buy-btn">buy</button>
+      <div class="modal-body">
+        <img src="" alt="" class="modal-image">
+        <div class="modal-details">
+          <h3 class="modal-title"></h3>
+          <p class="modal-description"></p>
+          <p class="modal-price"></p>
+          <button class="buy-btn">stack&gt; <span class="cart-count">0</span> items in memory</button>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+  <div id="list-modal" class="modal">
+    <div class="modal-content list-content">
+      <button class="modal-close">×</button>
+      <ul class="product-list"></ul>
+    </div>
+  </div>
+  </div>
+ </section>
 
 
-  <section class="services" id="services">
-    <h2>/services terminal</h2>
+  <section class="services layout-container" id="services-terminal">
+    <h2>sys\terminal[services]</h2>
     <div class="service-list">
-      <div class="service">
+      <div class="service" data-img="./assets/images/noise.gif" data-title="fine art comissions / digital art" data-desc="sketches; custom art pieces; poster design; sigils; tattoo flashes; nft projects;">
         <h3>fine art comissions / digital art ↘</h3>
         <p>sketches; custom art pieces; poster design; sigils; tattoo flashes; nft projects;</p>
+        <div class="service-details">
+          <img src="" alt="">
+          <div class="service-text"></div>
+          <button class="stack-btn">stack&gt; <span class="cart-count">0</span> items in memory</button>
+        </div>
       </div>
-      <div class="service">
+      <div class="service" data-img="./assets/images/noise.gif" data-title="publication design / conceptual writing" data-desc="zines; book layouts; typographic experiments; speculative essays; visual philosophy;">
         <h3>publication design / conceptual writing ↘</h3>
         <p>zines; book layouts; typographic experiments; speculative essays; visual philosophy;</p>
+        <div class="service-details">
+          <img src="" alt="">
+          <div class="service-text"></div>
+          <button class="stack-btn">stack&gt; <span class="cart-count">0</span> items in memory</button>
+        </div>
       </div>
-      <div class="service">
+      <div class="service" data-img="./assets/images/noise.gif" data-title="graphic design / screen design" data-desc="modular identities; product packagings; ux/ui; letterforms; visual communication strategies">
         <h3>graphic design / screen design ↘</h3>
         <p>modular identities; product packagings; ux/ui; letterforms; visual communication strategies</p>
+        <div class="service-details">
+          <img src="" alt="">
+          <div class="service-text"></div>
+          <button class="stack-btn">stack&gt; <span class="cart-count">0</span> items in memory</button>
+        </div>
       </div>
-      <div class="service">
+      <div class="service" data-img="./assets/images/noise.gif" data-title="producing / experimental sound design" data-desc="soundscapes; idm / triphop / noise / ambient; conceptual audio; voiceover; mixing & mastering">
         <h3>producing / experimental sound design ↘</h3>
         <p>soundscapes; idm / triphop / noise / ambient; conceptual audio; voiceover; mixing & mastering</p>
+        <div class="service-details">
+          <img src="" alt="">
+          <div class="service-text"></div>
+          <button class="stack-btn">stack&gt; <span class="cart-count">0</span> items in memory</button>
+        </div>
       </div>
     </div>
     <p class="rate">standard rate: 42€/h<br>we're open to resonance-based adjustments_</p>
   </section>
 
-  <section class="contact" id="contacts">
+  <section class="contact layout-container" id="contacts">
     <h2>connect us</h2>
     <div class="contact-wrapper">
       <div class="contact-info">
@@ -136,23 +181,26 @@
       </div>
       <form class="contact-form">
         <input type="email" placeholder="your e-mail here" />
+        <input type="text" class="subject" placeholder="subject" />
         <textarea placeholder="your message"></textarea>
         <p>consultations free of charge</p>
-        <button type="submit">send a message</button>
+        <button type="submit" class="send-btn">send a message</button>
       </form>
     </div>
   </section>
 
   <footer>
+    <div class="layout-container">
     <div class="footer-grid">
-      <div class="footer-brand">no choice, have fun</div>
+      <div class="footer-brand">no choice, have fun
+        <p class="copyright">© 2033 by nochoicehavefun</p>
+      </div>
       <div class="footer-links">
         <a href="#">privacy policy</a>
         <a href="#">accessibility statement</a>
         <a href="#">terms & conditions</a>
         <a href="#">refund policy</a>
         <a href="#">shipping policy</a>
-        <p class="copyright">© 2033 by nochoicehavefun</p>
       </div>
     </div>
   </footer>
