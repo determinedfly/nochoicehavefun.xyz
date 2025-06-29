@@ -16,12 +16,12 @@ body {
 .layout-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 160px;
+  padding: 0 5vw;
 }
 
 @media (max-width: 800px) {
   .layout-container {
-    padding: 0 20px;
+    padding: 0 5vw;
   }
 }
 
@@ -32,7 +32,7 @@ header {
   background: #000;
   z-index: 100;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #fff;
 }
 
 .nav-bar {
@@ -97,18 +97,21 @@ header {
 
 /* HERO SECTION */
 .hero {
-  padding: 100px 0 60px;
+  padding: 100px 5vw 60px;
   display: flex;
   justify-content: center;
   position: relative;
   overflow: hidden;
 }
 
-.hero-inner {
+
+.hero-layout {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 80px 0 60px;
+  padding: 0 5vw;
 }
 
 
@@ -123,44 +126,24 @@ header {
   z-index: 0;
 }
 
-.participate-note {
-  margin-top: 20px;
-  font-size: 24px;
-  color: #fff;
+
+.terminal-box {
+  background-color: rgba(0, 0, 0, 0.42);
+  border: 1px solid white;
+  padding: 1rem;
+  white-space: pre-line;
+}
+
+.tagline {
+  white-space: pre-line;
   text-align: right;
-  align-self: flex-end;
-  margin-left: auto;
-  max-width: 8ch;
-}
-
-.studio-info p {
-  white-space: nowrap;
-}
-
-.studio-info {
-  align-self: flex-end;
-  font-family: 'Red Hat Mono', monospace;
-  font-size: 14px;
-  color: #ccc;
-  line-height: 1.6;
-  white-space: nowrap;
-  position: relative;
-  z-index: 1;
-  max-width: 60%;
+  margin: 0;
 }
 
 @media (max-width: 800px) {
-  .hero-inner {
+  .hero-layout {
     flex-direction: column;
     padding: 60px 0;
-  }
-  .studio-info {
-    font-size: clamp(12px, 3vw, 14px);
-    margin-bottom: 20px;
-    align-self: flex-start;
-  }
-  .participate-note {
-    align-self: flex-end;
   }
 }
 
@@ -182,7 +165,7 @@ header {
 /* SHOP SECTION */
 .shop-section {
   position: relative;
-  padding: 60px 0;
+  padding: 60px 5vw;
 }
 
 .shop-section::before,
@@ -448,7 +431,7 @@ header {
 
 /* SERVICES SECTION */
 .services {
-  padding: 2rem 0;
+  padding: 2rem 5vw;
 }
 
 .services h2 {
@@ -590,7 +573,7 @@ header {
 
 /* FOOTER */
 footer {
-  padding: 3rem 0 5rem;
+  padding: 3rem 5vw 5rem;
   font-size: 13px;
   color: #666;
 }
