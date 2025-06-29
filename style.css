@@ -97,7 +97,7 @@ header {
 
 /* HERO SECTION */
 .hero {
-  padding: 100px 5vw 60px;
+  padding: 100px 0 60px;
   display: flex;
   justify-content: center;
   position: relative;
@@ -168,7 +168,7 @@ header {
 /* SHOP SECTION */
 .shop-section {
   position: relative;
-  padding: 60px 5vw;
+  padding: 60px 0;
 }
 
 .shop-section::before,
@@ -434,7 +434,7 @@ header {
 
 /* SERVICES SECTION */
 .services {
-  padding: 2rem 5vw;
+  padding: 2rem 0;
 }
 
 .services h2 {
@@ -579,7 +579,7 @@ header {
 
 /* FOOTER */
 footer {
-  padding: 3rem 5vw 5rem;
+  padding: 3rem 0 5rem;
   font-size: 13px;
   color: #666;
   line-height: 1.42;
