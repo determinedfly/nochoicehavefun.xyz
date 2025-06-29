@@ -31,7 +31,7 @@ header {
   top: 0;
   background: #000;
   z-index: 100;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid #333;
 }
 
@@ -40,7 +40,7 @@ header {
   grid-template-columns: repeat(12, 1fr);
   align-items: center;
   font-size: 12px;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .nav-bar a {
@@ -108,9 +108,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 80px 160px 60px;
+  padding: 80px 0 60px;
 }
 
 
@@ -154,7 +152,7 @@ header {
 @media (max-width: 800px) {
   .hero-inner {
     flex-direction: column;
-    padding: 60px 20px;
+    padding: 60px 0;
   }
   .studio-info {
     font-size: clamp(12px, 3vw, 14px);
@@ -163,10 +161,6 @@ header {
   }
   .participate-note {
     align-self: flex-end;
-  }
-  .shop-section {
-    padding-left: 20px;
-    padding-right: 20px;
   }
 }
 
@@ -188,7 +182,7 @@ header {
 /* SHOP SECTION */
 .shop-section {
   position: relative;
-  padding: 60px 160px;
+  padding: 60px 0;
 }
 
 .shop-section::before,
@@ -607,9 +601,6 @@ footer {
   flex-wrap: wrap;
   gap: 2rem;
   align-items: flex-end;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 160px;
 }
 
 .footer-links a {
@@ -627,11 +618,6 @@ footer {
   flex-direction: column;
 }
 
-@media (max-width: 800px) {
-  .footer-grid {
-    padding: 0 20px;
-  }
-}
 .copyright {
   font-size: 12px;
   color: #888;
