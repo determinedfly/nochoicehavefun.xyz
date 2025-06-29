@@ -122,14 +122,6 @@ header {
   z-index: 1;
 }
 
-.noise-img {
-  width: 100%;
-  max-width: none;
-  height: auto;
-  aspect-ratio: 1100 / 666;
-  object-fit: cover;
-  display: block;
-}
 
 #hero-canvas {
   position: absolute;

@@ -184,23 +184,82 @@ if (heroCanvas) {
 
     const fragmentSrc = `#version 300 es
     precision highp float;
+    out vec4 O;
     uniform float time;
     uniform vec2 resolution;
     uniform vec2 move;
-    out vec4 O;
-
-    vec3 pal(float t) {
-      return 0.5 + 0.5*cos(6.2831*(vec3(0.0,0.33,0.67)+t));
+    #define FC gl_FragCoord.xy
+    #define R resolution
+    #define T time
+    #define N normalize
+    #define S smoothstep
+    #define MN min(R.x,R.y)
+    #define rot(a) mat2(cos((a)-vec4(0,11,33,0)))
+    #define csqr(a) vec2(a.x*a.x-a.y*a.y,2.*a.x*a.y)
+    float rnd(vec3 p) {
+      p = fract(p * vec3(12.9898, 78.233, 156.34));
+      p += dot(p, p + 34.56);
+      return fract(p.x * p.y * p.z);
     }
-
-    void main(){
-      vec2 uv = (gl_FragCoord.xy - 0.5*resolution) / resolution.y;
-      vec2 m = (move / resolution - 0.5) * 2.0;
-      float d = length(uv - m);
-      float a = atan(uv.y - m.y, uv.x - m.x);
-      float w = sin(8.0*a + time);
-      vec3 col = pal(d + w + time*0.1);
-      O = vec4(col, 1.0);
+    float swirls(in vec3 p) {
+      float d = .0;
+      vec3 c = p;
+      for (float i = min(.0, time); i < 9.; i++) {
+        p = .7 * abs(p) / dot(p, p) - .7;
+        p.yz = csqr(p.yz);
+        p = p.zxy;
+        d += exp(-19. * abs(dot(p, c)));
+      }
+      return d;
+    }
+    vec3 march(in vec3 p, vec3 rd) {
+      float d = .2, t = .0, c = .0, k = mix(.9, 1., rnd(rd)),
+            maxd = length(p) - 1.;
+      vec3 col = vec3(0);
+      vec3 orange = vec3(186.0/255.0, 88.0/255.0, 66.0/255.0); // BA5842
+      for (float i = min(.0, time); i < 120.; i++) {
+        t += d * exp(-2. * c) * k;
+        c = swirls(p + rd * t);
+        if (t < 5e-2 || t > maxd) break;
+        col += orange * c * 0.015;
+      }
+      return col;
+    }
+    float rnd(vec2 p) {
+      p = fract(p * vec2(12.9898, 78.233));
+      p += dot(p, p + 34.56);
+      return fract(p.x * p.y);
+    }
+    vec3 sky(vec2 p, bool anim) {
+      p.x -= .17 - (anim ? 2e-4 * T : .0);
+      p *= 500.;
+      vec2 id = floor(p), gv = fract(p) - .5;
+      float n = rnd(id), d = length(gv);
+      if (n < .985) return vec3(0);
+      vec3 spark = vec3(186.0/255.0, 88.0/255.0, 66.0/255.0);
+      return spark * S(3e-2 * n, 1e-3 * n, d * d);
+    }
+    void cam(inout vec3 p) {
+      p.yz *= rot(move.y * 6.3 / MN - T * .05);
+      p.xz *= rot(-move.x * 6.3 / MN + T * .025);
+    }
+    void main() {
+      vec2 uv = (FC - .5 * R) / MN;
+      vec3 col = vec3(0), p = vec3(0, 0, -16), rd = N(vec3(uv, 1)), rdd = rd;
+      cam(p); cam(rd);
+      col = march(p, rd);
+      col = S(-.2, .9, col);
+      vec2 sn = .5 + vec2(atan(rdd.x, rdd.z), atan(length(rdd.xz), rdd.y)) / 6.28318;
+      col = max(col, sky(sn, true) + sky(2. + sn * 2., true));
+      float t = min((time - .5) * .3, 1.);
+      uv = FC / R * 2. - 1.;
+      uv *= .7;
+      float v = pow(dot(uv, uv), 1.8);
+      vec3 bg = vec3(186.0/255.0, 88.0/255.0, 66.0/255.0) * 0.2;
+      col = mix(bg, col, t);
+      col = mix(vec3(0), col, 1. - v);
+      col = max(col, .08);
+      O = vec4(col, 1);
     }`;
 
     function compile(type, source) {
@@ -245,12 +304,11 @@ if (heroCanvas) {
     resize();
     window.addEventListener('resize', resize);
 
-    let mouse = [0, 0];
+    let moveVec = [0, 0];
     heroCanvas.addEventListener('mousemove', e => {
-      const rect = heroCanvas.getBoundingClientRect();
-      mouse[0] = e.clientX - rect.left;
-      mouse[1] = heroCanvas.height - (e.clientY - rect.top);
-      gl.uniform2f(moveLoc, mouse[0], mouse[1]);
+      moveVec[0] += e.movementX;
+      moveVec[1] += e.movementY;
+      gl.uniform2f(moveLoc, moveVec[0], moveVec[1]);
     });
 
     function render(t) {
