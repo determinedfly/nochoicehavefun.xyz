@@ -32,7 +32,7 @@ header {
   background: #000;
   z-index: 100;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #fff;
 }
 
 .nav-bar {
@@ -106,6 +106,8 @@ header {
 
 
 .hero-layout {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
